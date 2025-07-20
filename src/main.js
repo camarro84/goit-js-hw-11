@@ -15,7 +15,7 @@ const loader = document.querySelector('.loader');
 
 let query = '';
 let page = 1;
-const per_page = 40;
+const per_page = 20;
 
 function showLoadMoreBtn() {
   loadMoreBtn.classList.remove('is-hidden');
