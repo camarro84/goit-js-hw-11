@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GoIT-HomeWork11</title>
-    <script type="module" crossorigin src="/goit-js-hw-11/assets/main-fZ0fmtn0.js"></script>
-    <link rel="stylesheet" crossorigin href="/goit-js-hw-11/assets/main-C3phlQEc.css">
+    <title>Поиск изображений</title>
+    <script type="module" crossorigin src="/goit-js-hw-11/assets/main-BAR8OHQq.js"></script>
+    <link rel="stylesheet" crossorigin href="/goit-js-hw-11/assets/main-Bi_Msnih.css">
   </head>
   <body>
     <div class="container">
@@ -20,9 +20,13 @@
         </label>
         <button type="submit">Search</button>
       </form>
+      <p class="results-count"></p>
       <span class="loader is-hidden"></span>
     </div>
     <ul class="gallery"></ul>
     <button type="button" class="load-more-btn is-hidden">Load more</button>
+    <p class="api-limit-notice is-hidden">
+      Показаны первые 500 изображений. Это ограничение от Pixabay.
+    </p>
   </body>
 </html>
