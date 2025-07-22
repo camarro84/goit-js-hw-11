@@ -57,7 +57,17 @@ body {
 .form button:focus {
   background-color: #6c8cff;
 }
+<<<<<<< Updated upstream
 
+=======
+.results-count {
+  font-size: 14px;
+  color: #6c757d;
+  margin-top: -16px;
+  margin-bottom: 16px;
+  height: 21px;
+}
+>>>>>>> Stashed changes
 .gallery {
   display: flex;
   flex-wrap: wrap;
@@ -142,7 +152,16 @@ body {
 .load-more-btn:focus {
   background-color: #6c8cff;
 }
+<<<<<<< Updated upstream
 
+=======
+.api-limit-notice {
+  font-size: 12px;
+  color: #888;
+  text-align: center;
+  margin-top: 16px;
+}
+>>>>>>> Stashed changes
 .is-hidden {
   display: none;
 }
@@ -154,6 +173,7 @@ body {
   100% {
     transform: rotate(360deg);
   }
+<<<<<<< Updated upstream
 }
 
 @media (max-width: 1200px) {
@@ -185,3 +205,6 @@ body {
     width: 100%;
   }
 }
+=======
+} 
+>>>>>>> Stashed changes
