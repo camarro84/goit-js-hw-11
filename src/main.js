@@ -11,11 +11,12 @@ import {
 const searchForm = document.querySelector('.form');
 const galleryContainer = document.querySelector('.gallery');
 const loadMoreBtn = document.querySelector('.load-more-btn');
-const loader = document.querySelector('.loader');
+const resultsCountEl = document.querySelector('.results-count');
+const apiLimitNotice = document.querySelector('.api-limit-notice');
 
 let query = '';
 let page = 1;
-const per_page = 20;
+const per_page = 40;
 
 function showLoadMoreBtn() {
   loadMoreBtn.classList.remove('is-hidden');
@@ -23,6 +24,14 @@ function showLoadMoreBtn() {
 
 function hideLoadMoreBtn() {
   loadMoreBtn.classList.add('is-hidden');
+}
+
+function showApiLimitNotice() {
+  apiLimitNotice.classList.remove('is-hidden');
+}
+
+function hideApiLimitNotice() {
+  apiLimitNotice.classList.add('is-hidden');
 }
 
 searchForm.addEventListener('submit', async event => {
@@ -42,6 +51,8 @@ searchForm.addEventListener('submit', async event => {
   clearGallery();
   hideLoadMoreBtn();
   showLoader();
+  resultsCountEl.textContent = '';
+  hideApiLimitNotice();
 
   try {
     const data = await getImagesByQuery(query, page, per_page);
@@ -54,9 +65,15 @@ searchForm.addEventListener('submit', async event => {
       });
     } else {
       createGallery(data.hits);
+      resultsCountEl.textContent = `Found ${data.totalHits} images.`;
       const totalPages = Math.ceil(data.totalHits / per_page);
       if (page < totalPages) {
         showLoadMoreBtn();
+      } else if (data.totalHits > 0) {
+        hideLoadMoreBtn();
+        if (data.totalHits >= 500) {
+          showApiLimitNotice();
+        }
       }
     }
   } catch (error) {
@@ -83,11 +100,15 @@ loadMoreBtn.addEventListener('click', async () => {
     if (page < totalPages) {
       showLoadMoreBtn();
     } else {
+      hideLoadMoreBtn();
       iziToast.info({
         title: 'Конец',
         message: 'Вы достигли конца результатов поиска.',
         position: 'topRight',
       });
+      if (data.totalHits >= 500) {
+        showApiLimitNotice();
+      }
     }
 
     const { height: cardHeight } =
